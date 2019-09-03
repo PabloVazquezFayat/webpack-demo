@@ -1,15 +1,17 @@
 import _ from 'lodash';
-import * as logger from './logger';
+import scene from './scene';
 
-function component() {
-    const element = document.createElement('div');
-  
-    element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-  
-    return element;
+function canvas() {
+    const canvas = document.createElement('canvas');
+    canvas.style.width = "100%";
+    canvas.style.height = "100%";
+    canvas.style.touchAction = 'none';
+    canvas.setAttribute('id', 'renderCanvas');
+    return canvas;
   }
-  
-  document.body.appendChild(component());
 
-logger.logOnce();
-logger.logRepeat();
+  document.body.appendChild(canvas());
+
+  scene();
+
+
