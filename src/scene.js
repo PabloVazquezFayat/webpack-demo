@@ -1,5 +1,6 @@
 import * as BABYLON from 'babylonjs';
 import contents from './contents';
+import createTerrain from './terrain';
 
 export default function(){
     // Get the canvas DOM element
@@ -20,7 +21,8 @@ export default function(){
         var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0, 1, 0), scene);
         
         //populate scene here
-        contents(scene);
+        //contents(scene);
+        createTerrain(scene);
 
         return scene;
     }
