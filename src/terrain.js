@@ -1,4 +1,5 @@
 import * as BABYLON from 'babylonjs';
+import 'babylonjs-materials';
 
 export default function (scene){
 

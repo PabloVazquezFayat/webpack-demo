@@ -6,8 +6,8 @@ module.exports = {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist')
   },
-  externals: {
-    BABYLON: 'babylonjs'
-  },
+  // externals: {
+  //   BABYLON: 'babylonjs'
+  // },
   mode: 'development',
 };
