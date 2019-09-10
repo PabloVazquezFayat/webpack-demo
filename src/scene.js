@@ -1,6 +1,5 @@
 import * as BABYLON from 'babylonjs';
-//import createTerrain from './terrain';
-import 'babylonjs-materials';
+import terrain from './terrain';
 
 export default function(){
     // Get the canvas DOM element
@@ -11,21 +10,18 @@ export default function(){
     var createScene = function(){
         // Create a basic BJS Scene object
         var scene = new BABYLON.Scene(engine);
-        var camera = new BABYLON.FreeCamera('camera1', new BABYLON.Vector3(0, 5, -10), scene);
 
-        camera.setTarget(BABYLON.Vector3.Zero());
-        camera.attachControl(canvas, false);
+        // Parameters: alpha, beta, radius, target position, scene
+        var camera = new BABYLON.ArcRotateCamera("Camera", 0, 0, 10, new BABYLON.Vector3(0, 0, 0), scene);
+
+         // Positions the camera overwriting alpha, beta, radius
+        camera.setPosition(new BABYLON.Vector3(0, 0, 10));
+    
+        // This attaches the camera to the canvas
+        camera.attachControl(canvas, true);
 
         var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0, 1, 0), scene);
-        
-        //populate scene here
-        var fireMaterial = new BABYLON.FireMaterial("fireMaterial", scene);
-        fireMaterial.diffuseTexture = new BABYLON.Texture("diffuse.png", scene);
-        fireMaterial.distortionTexture = new BABYLON.Texture("distortion.png", scene);
-        fireMaterial.opacityTexture = new BABYLON.Texture("opacity.png", scene);
-
-        var plane = BABYLON.Mesh.CreatePlane("fireplane", 1.0, scene);
-        plane.material = fireMaterial;
+        terrain(scene);
 
         return scene;
     }

@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import scene from './scene';
 
 function canvas() {
@@ -13,5 +12,3 @@ function canvas() {
   document.body.appendChild(canvas());
 
   scene();
-
-
