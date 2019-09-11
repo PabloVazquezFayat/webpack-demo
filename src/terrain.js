@@ -21,5 +21,6 @@ export default function (scene){
     terrainMaterial.diffuseTexture3.uScale = terrainMaterial.diffuseTexture3.vScale = 10;
 
     terrain.material = terrainMaterial;
+    terrain.receiveShadows = true;
 
 }

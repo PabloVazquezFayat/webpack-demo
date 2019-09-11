@@ -1,5 +1,7 @@
 import * as BABYLON from 'babylonjs';
 import terrain from './terrain';
+import sky from './sky';
+import { SceneSerializer } from 'babylonjs';
 
 export default function(){
     // Get the canvas DOM element
@@ -11,6 +13,8 @@ export default function(){
         // Create a basic BJS Scene object
         var scene = new BABYLON.Scene(engine);
 
+        //scene.debugLayer.show();
+
         // Parameters: alpha, beta, radius, target position, scene
         var camera = new BABYLON.ArcRotateCamera("Camera", 0, 0, 10, new BABYLON.Vector3(0, 0, 0), scene);
 
@@ -20,8 +24,22 @@ export default function(){
         // This attaches the camera to the canvas
         camera.attachControl(canvas, true);
 
-        var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0, 1, 0), scene);
+        var light1 = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0, 1, 0), scene);
+        var light2 = new BABYLON.DirectionalLight("DirectionalLight", new BABYLON.Vector3(20, -60, 40), scene);
+        light2.intensity = 0.5;
+
+
+        var myBox = BABYLON.MeshBuilder.CreateBox("myBox", {height: 5, width: 2, depth: 0.5}, scene);
+        myBox.position = new BABYLON.Vector3(-10, 9, 15);
+
         terrain(scene);
+        sky(scene);
+
+        var objects = scene.getMeshByName("terrain"); 
+        var shadowGenerator = new BABYLON.ShadowGenerator(1024, light2);
+        shadowGenerator.getShadowMap().renderList.push(objects);
+        shadowGenerator.getShadowMap().renderList.push(myBox);
+        //shadowGenerator.usePoissonSampling = true;
 
         return scene;
     }
