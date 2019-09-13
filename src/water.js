@@ -12,7 +12,7 @@ export default function(scene, skybox, ground){
     water.windDirection = new BABYLON.Vector2(1.0, 1.0);
 	water.waveHeight = 0.2;
 	water.bumpHeight = 0.50;
-	water.waterColor = new BABYLON.Color3(0.047, 0.23, 0.015);
+	water.waterColor = new BABYLON.Color3(135/255, 206/255, 235/255);
 	water.colorBlendFactor = 0.5;
 	water.addToRenderList(skybox);
 	water.addToRenderList(ground);
