@@ -1,7 +1,7 @@
 import * as BABYLON from 'babylonjs';
 import terrain from './terrain';
 import sky from './sky';
-import { SceneSerializer } from 'babylonjs';
+import water from './water';
 
 export default function(){
     // Get the canvas DOM element
@@ -34,6 +34,7 @@ export default function(){
 
         terrain(scene);
         sky(scene);
+        water(scene, scene.getMeshByName('skyBox'), scene.getMeshByName('terrain'));
 
         var objects = scene.getMeshByName("terrain"); 
         var shadowGenerator = new BABYLON.ShadowGenerator(1024, light2);
