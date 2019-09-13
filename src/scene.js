@@ -2,6 +2,7 @@ import * as BABYLON from 'babylonjs';
 import terrain from './terrain';
 import sky from './sky';
 import water from './water';
+import villager from './villager';
 
 export default function(){
     // Get the canvas DOM element
@@ -28,18 +29,15 @@ export default function(){
         var light2 = new BABYLON.DirectionalLight("DirectionalLight", new BABYLON.Vector3(20, -60, 40), scene);
         light2.intensity = 0.5;
 
-
-        var myBox = BABYLON.MeshBuilder.CreateBox("myBox", {height: 5, width: 2, depth: 0.5}, scene);
-        myBox.position = new BABYLON.Vector3(-10, 9, 15);
-
         terrain(scene);
         sky(scene);
         water(scene, scene.getMeshByName('skyBox'), scene.getMeshByName('terrain'));
+        villager(scene);
 
         var objects = scene.getMeshByName("terrain"); 
         var shadowGenerator = new BABYLON.ShadowGenerator(1024, light2);
         shadowGenerator.getShadowMap().renderList.push(objects);
-        shadowGenerator.getShadowMap().renderList.push(myBox);
+        shadowGenerator.getShadowMap().renderList.push(scene.getMeshByName('villager'));
         //shadowGenerator.usePoissonSampling = true;
 
         return scene;
