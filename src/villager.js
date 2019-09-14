@@ -25,7 +25,7 @@ export default function(scene){
     villager.moveWithCollisions(backwards);
 
     setInterval(()=>{
-        villager.position.x++;
-    }, 10000);
+        villager.position.y--;
+    }, 1000);
 
 }

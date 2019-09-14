@@ -20,7 +20,7 @@ export default function(){
         var camera = new BABYLON.ArcRotateCamera("Camera", 0, 0, 10, new BABYLON.Vector3(0, 0, 0), scene);
 
          // Positions the camera overwriting alpha, beta, radius
-        camera.setPosition(new BABYLON.Vector3(0, 0, 10));
+        camera.setPosition(new BABYLON.Vector3(0, 10, 10));
     
         // This attaches the camera to the canvas
         camera.attachControl(canvas, true);
@@ -31,14 +31,13 @@ export default function(){
 
         terrain(scene);
         sky(scene);
-        water(scene, scene.getMeshByName('skyBox'), scene.getMeshByName('terrain'));
-        villager(scene);
+        //water(scene, scene.getMeshByName('skyBox'), scene.getMeshByName('terrain'));
+        //villager(scene);
 
         var objects = scene.getMeshByName("terrain"); 
         var shadowGenerator = new BABYLON.ShadowGenerator(1024, light2);
         shadowGenerator.getShadowMap().renderList.push(objects);
         shadowGenerator.getShadowMap().renderList.push(scene.getMeshByName('villager'));
-        //shadowGenerator.usePoissonSampling = true;
 
         return scene;
     }

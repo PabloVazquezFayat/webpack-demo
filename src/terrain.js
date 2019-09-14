@@ -3,7 +3,9 @@ import * as Materials from 'babylonjs-materials';
 
 export default function (scene){
 
-    let terrain = BABYLON.Mesh.CreateGroundFromHeightMap("terrain", "/images/terrain/terrain.png", 100, 100, 100, 0, 10, scene, false);
+    //let terrain = BABYLON.Mesh.CreateGroundFromHeightMap("terrain", "/images/terrain/terrain.png", 100, 100, 100, 0, 10, scene, false);
+
+    let terrain = BABYLON.MeshBuilder.CreateGround("myGround", {width: 100, height: 100, subdivisions: 4}, scene);
 
     let terrainMaterial = new Materials.TerrainMaterial("terrainMaterial", scene);
     terrainMaterial.mixTexture = new BABYLON.Texture("/images/terrain/terrain-rgb.png", scene);
@@ -23,4 +25,5 @@ export default function (scene){
     terrain.material = terrainMaterial;
     terrain.receiveShadows = true;
 
+    terrain.checkCollisions = true;
 }
